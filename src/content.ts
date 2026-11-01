@@ -177,7 +177,7 @@ export const projects: Project[] = [
     kind: 'Open-world browser game',
     year: '2026',
     summary: 'An open-world Kuala Lumpur you can drive, ride and walk through, in a browser tab or on a phone.',
-    cover: { src: m('kl-towers-hills-golden-hour-1600.webp'), alt: 'KL Rush: KL Tower and the Petronas Twin Towers against green hills at golden hour', w: 1600, h: 900 },
+    cover: { src: m('kl-towers-dusk-1600.webp'), alt: 'KL Rush: KL Tower and the Petronas Twin Towers lit at dusk above the city, with mountains behind', w: 1600, h: 900 },
     video: { src: m('kl-drive-loop.mp4'), poster: m('kl-drive-poster.webp'), label: 'Six seconds of KL Rush gameplay: driving up the mountain road through the forest' },
     live: { label: 'Play KL Rush', href: 'https://kl-rush.vercel.app' },
     repo: { label: 'Public preview repo', href: 'https://github.com/chengboonrong/kl-rush-preview' },
@@ -219,7 +219,7 @@ export const projects: Project[] = [
     limits: ['The Windows and Linux desktop apps have not yet been tried on real machines.', 'The apps are not signed by Apple or Microsoft.'],
     gallery: [
       { src: m('kl-street-chase-1280.webp'), alt: 'Two police cars chasing a red car through a KL junction under a passing monorail', w: 1280, h: 720, caption: 'A police chase under the monorail.' },
-      { src: m('kl-alor-night-market-1600.webp'), alt: 'Jalan Alor night market at dusk under rows of red lanterns', w: 1600, h: 900, caption: 'Jalan Alor at dusk.' },
+      { src: m('kl-alor-dusk-1600.webp'), alt: 'Jalan Alor at dusk under rows of red lanterns, with hawker stalls and folding tables along the street', w: 1600, h: 900, caption: 'Jalan Alor at dusk.' },
       { src: m('kl-klia-departure-hall-1600.webp'), alt: 'KLIA Terminal 1 departure hall with white tree columns under a wooden shell roof', w: 1600, h: 900, caption: 'The KLIA departure hall.' },
       { src: m('kl-smart-tunnel-flood-gates-1600.webp'), alt: 'The SMART Tunnel closed for flooding, with its gates shut and lane signals red', w: 1600, h: 900, caption: 'The SMART Tunnel closes in heavy rain.' },
       { src: m('kl-merdeka118-dusk-1600.webp'), alt: 'Merdeka 118 at dusk, its faceted tower and spire outlined in white light above the lit city', w: 1600, h: 900, caption: 'Merdeka 118 at dusk, rebuilt from photos.' },
