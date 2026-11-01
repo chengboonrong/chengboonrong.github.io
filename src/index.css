@@ -1,0 +1,177 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ground: #07080e;
+  --color-raised: #0e1018;
+  --color-line: #232736;
+  --color-ink: #eceef5;
+  --color-muted: #a0a7bb;
+  --color-blue: #4d7cff;
+  --color-violet: #8f6bff;
+  --font-display: 'Archivo Variable', 'Arial Narrow', sans-serif;
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    background: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    overflow-x: clip;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+  }
+  h1:focus,
+  main:focus {
+    outline: none;
+  }
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  ::selection {
+    background: var(--color-blue);
+    color: var(--color-ground);
+  }
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-stretch: 62%;
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.012em;
+}
+
+/* Text sits a little below its line box so 'g' and 'p' clear the mask. */
+.mask-line {
+  display: block;
+  overflow: clip;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+.mask-line > span {
+  display: block;
+}
+.reveal-line-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+/* The hero text is in the HTML. This runs with no JavaScript and always ends fully visible. */
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0s);
+  }
+  .fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0s);
+  }
+  .zoom-frame img,
+  .zoom-frame video {
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .zoom-frame:hover img,
+  .zoom-frame:hover video,
+  a:focus-visible .zoom-frame img,
+  a:focus-visible .zoom-frame video {
+    transform: scale(1.035);
+  }
+}
+@keyframes rise {
+  from {
+    transform: translateY(102%);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+/* The one gradient: dusk over the city. It stays when WebGL is unavailable. */
+.hero-sky {
+  background:
+    radial-gradient(64% 46% at 78% 42%, rgb(143 107 255 / 0.42), transparent 72%),
+    radial-gradient(90% 34% at 58% 46%, rgb(77 124 255 / 0.3), transparent 74%),
+    var(--color-ground);
+}
+.hero-scrim {
+  background:
+    linear-gradient(90deg, rgb(7 8 14 / 0.86), rgb(7 8 14 / 0.5) 44%, transparent 68%),
+    linear-gradient(0deg, var(--color-ground), transparent 34%);
+}
+@media (max-width: 767px) {
+  .hero-scrim {
+    background: linear-gradient(0deg, var(--color-ground) 8%, rgb(7 8 14 / 0.72) 38%, transparent 62%);
+  }
+}
+.city-canvas {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .city-canvas {
+    transition: opacity 1.2s ease;
+  }
+}
+
+.card-scrim {
+  background: linear-gradient(0deg, rgb(7 8 14 / 0.94), rgb(7 8 14 / 0.55) 34%, transparent 62%);
+}
+
+/* Route change: the new page wipes up, and the nav stays put. */
+.site-nav {
+  view-transition-name: site-nav;
+}
+.vt-hero {
+  view-transition-name: work-media;
+}
+::view-transition-old(root) {
+  animation: 0.32s ease both vt-out;
+}
+::view-transition-new(root) {
+  animation: 0.48s cubic-bezier(0.16, 1, 0.3, 1) both vt-wipe;
+}
+::view-transition-group(work-media) {
+  animation-duration: 0.48s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes vt-out {
+  to {
+    opacity: 0.25;
+  }
+}
+@keyframes vt-wipe {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 11mm 14mm;
+  }
+  html,
+  body {
+    background: #fff;
+    color: #000;
+  }
+  body {
+    overflow: visible;
+  }
+}
