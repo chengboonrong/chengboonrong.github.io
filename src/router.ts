@@ -9,6 +9,12 @@ const SHARED = 'work-media'
 const positions = new Map<number, number>()
 const newId = () => Date.now() + Math.random()
 
+/** Native anchor jumps add history entries with no state, so stamp whichever entry is current. */
+function entryId(): number {
+  if (!history.state?.id) history.replaceState({ id: newId() }, '')
+  return history.state.id
+}
+
 function syncHead(path: string) {
   const { title, description } = pageMeta(path)
   document.title = title
@@ -25,7 +31,7 @@ export function useRoute(initial: string) {
   useEffect(() => {
     let current = path
     history.scrollRestoration = 'manual'
-    if (!history.state?.id) history.replaceState({ id: newId() }, '')
+    entryId()
 
     const swap = (url: URL, y: number, source: HTMLElement | null) => {
       const next = normalPath(url.pathname)
@@ -66,7 +72,7 @@ export function useRoute(initial: string) {
       if (next.includes('.')) return
       if (next === current && url.hash) return // Same-page anchors keep native scrolling and focus.
       event.preventDefault()
-      positions.set(history.state.id, window.scrollY)
+      positions.set(entryId(), window.scrollY)
       history.pushState({ id: newId() }, '', next + url.hash)
       swap(url, 0, link.querySelector<HTMLElement>('[data-vt]'))
     }
@@ -84,7 +90,7 @@ export function useRoute(initial: string) {
 
     // The entry being left is the current one only until popstate fires, so keep its position up to date.
     const remember = () => {
-      if (history.state?.id) positions.set(history.state.id, window.scrollY)
+      positions.set(entryId(), window.scrollY)
     }
     document.addEventListener('click', onClick)
     window.addEventListener('popstate', onPop)

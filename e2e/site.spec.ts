@@ -49,6 +49,14 @@ test('links work and back restores the page', async ({ page }, info) => {
   await expect(page.locator('h1')).toContainText('Boon Rong Cheng')
 })
 
+test('a card opens after the in-page work link', async ({ page }) => {
+  await page.goto('/')
+  await page.locator('a[href="/#work"]:visible').first().click()
+  await expect(page).toHaveURL(/#work$/)
+  await page.locator('a[href="/work/kl-rush/"]').click()
+  await expect(page.locator('h1')).toHaveText('KL Rush')
+})
+
 for (const width of [320, 1440]) {
   test(`no horizontal overflow at ${width}`, async ({ page }) => {
     await page.setViewportSize({ width, height: 800 })
