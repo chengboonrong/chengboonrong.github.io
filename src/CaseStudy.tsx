@@ -186,9 +186,9 @@ export function CaseStudy({ project: p }: { project: Project }) {
         </h2>
         <ol className="grid gap-px bg-line sm:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]">
           {p.flow.steps.map((step, i) => (
-            <li key={step} className="flex min-h-32 flex-col justify-between gap-6 bg-raised p-5">
+            <li key={step} className="flex items-baseline gap-4 bg-raised p-5 sm:min-h-32 sm:flex-col sm:items-stretch sm:justify-between">
+              <span aria-hidden className="font-mono text-sm text-blue">{String(i + 1).padStart(2, '0')}</span>
               <span className="text-lg font-medium leading-snug">{step}</span>
-              {i < p.flow.steps.length - 1 && <ArrowRight size={20} weight={ICON} aria-hidden className="text-blue" />}
             </li>
           ))}
         </ol>
