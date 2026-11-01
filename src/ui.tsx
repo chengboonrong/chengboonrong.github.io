@@ -43,13 +43,13 @@ export function Img({ shot, sizes, eager, className }: { shot: Shot; sizes: stri
 
 export function External({ link, primary }: { link: Link; primary?: boolean }) {
   return (
-    <span className="flex flex-col gap-1.5">
-      <a href={link.href} target="_blank" rel="noopener" className={primary ? pillPrimary : pillSecondary}>
+    <a href={link.href} target="_blank" rel="noopener" className="group flex flex-col gap-1.5">
+      <span className={primary ? pillPrimary : pillSecondary}>
         {link.label}
         <ArrowUpRight size={16} weight={ICON} aria-hidden />
-      </a>
-      <span className="pl-6 font-mono text-xs text-muted">{link.href.replace(/^https:\/\//, '').replace(/\/$/, '')}</span>
-    </span>
+      </span>
+      <span className="pl-6 font-mono text-xs text-muted group-hover:text-ink">{link.href.replace(/^https:\/\//, '').replace(/\/$/, '')}</span>
+    </a>
   )
 }
 

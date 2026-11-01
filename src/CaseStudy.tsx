@@ -23,9 +23,11 @@ function Facade({ project, tall }: { project: Project; tall: boolean }) {
   const [running, setRunning] = useState(false)
   const { embed, cover } = project
   if (!embed || !cover) return null
+  // Kiosk's break-it buttons sit under its figure, so the running frame has to show both.
+  const frame = !tall ? 'aspect-video' : running ? 'h-[calc(100vw+23rem)] md:h-[56rem]' : 'aspect-[3/4]'
   return (
     <figure>
-      <div className={`vt-hero relative overflow-hidden border border-line bg-raised ${tall ? 'aspect-[3/4]' : 'aspect-video'}`}>
+      <div className={`vt-hero relative overflow-hidden border border-line bg-raised ${frame}`}>
         {running ? (
           <iframe src={embed.src} title={embed.title} sandbox="allow-scripts allow-same-origin" loading="lazy" className="absolute inset-0 size-full" />
         ) : (
