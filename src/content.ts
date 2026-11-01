@@ -5,12 +5,12 @@ export const site = {
   url: 'https://chengboonrong.github.io',
   name: 'Chris Cheng',
   legalName: 'Boon Rong Cheng',
-  roles: ['Software Engineer', 'Technical Lead', 'Creative Developer'],
+  roles: ['Software Engineer', 'Creative Developer'],
   headline: 'Engineering the Unexpected.',
   intro:
     'I design and build intelligent software, scalable applications, and immersive digital experiences, transforming ambitious ideas into working products.',
   description:
-    'Chris Cheng is a senior software engineer and technical lead in Kuala Lumpur, building full-stack, mobile, AI and real-time 3D software. Open to remote and contract work.',
+    'Chris Cheng is a senior software engineer in Kuala Lumpur, building full-stack, mobile, AI and real-time 3D software. Open to remote and contract work.',
   email: 'chengchris8715@gmail.com',
   github: 'https://github.com/chengboonrong',
   linkedin: 'https://www.linkedin.com/in/toshio97/',
@@ -25,7 +25,6 @@ export const about = {
   ],
   facts: [
     { value: '6+', label: 'years shipping production software' },
-    { value: '8', label: 'developers led across mobile and backend' },
   ],
 }
 
@@ -134,7 +133,7 @@ export const expertise = [
     tools: ['Three.js', 'WebGPU', 'WebGL2', 'WebAssembly'],
   },
   {
-    title: 'Architecture and leadership',
+    title: 'Architecture and delivery',
     body: 'System design, code review standards, CI gates, production reliability and mentoring.',
     tools: ['System design', 'CI/CD', 'Code review', 'Mentoring'],
   },
