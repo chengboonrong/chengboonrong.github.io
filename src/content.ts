@@ -222,7 +222,7 @@ export const projects: Project[] = [
       { src: m('kl-alor-night-market-1600.webp'), alt: 'Jalan Alor night market at dusk under rows of red lanterns', w: 1600, h: 900, caption: 'Jalan Alor at dusk.' },
       { src: m('kl-klia-departure-hall-1600.webp'), alt: 'KLIA Terminal 1 departure hall with white tree columns under a wooden shell roof', w: 1600, h: 900, caption: 'The KLIA departure hall.' },
       { src: m('kl-smart-tunnel-flood-gates-1600.webp'), alt: 'The SMART Tunnel closed for flooding, with its gates shut and lane signals red', w: 1600, h: 900, caption: 'The SMART Tunnel closes in heavy rain.' },
-      { src: m('kl-merdeka118-golden-1600.webp'), alt: 'Merdeka 118 tower rising over the city under a blue and pink sky', w: 1600, h: 900, caption: 'Merdeka 118, rebuilt from photos.' },
+      { src: m('kl-merdeka118-dusk-1600.webp'), alt: 'Merdeka 118 at dusk, its faceted tower and spire outlined in white light above the lit city', w: 1600, h: 900, caption: 'Merdeka 118 at dusk, rebuilt from photos.' },
     ],
   },
   {
