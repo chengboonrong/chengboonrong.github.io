@@ -93,4 +93,6 @@ export default defineConfig(({ isSsrBuild }) => ({
   build: { copyPublicDir: !isSsrBuild, chunkSizeWarningLimit: 800 },
   ssr: { noExternal: ["@phosphor-icons/react"] },
   preview: { port: 4893, strictPort: true },
+  // e2e/ is Playwright (npm test); keep Vitest off it.
+  test: { exclude: ["e2e/**", "node_modules/**"], passWithNoTests: true },
 }));
