@@ -246,6 +246,7 @@ function Experience() {
               <h3 className="display pr-8 text-[clamp(2.4rem,4.6vw,5rem)]">{group.company}</h3>
               <ol className="space-y-2 md:col-span-2 md:pl-10">
                 {group.roles.map((role) => {
+                  // oxlint-disable-next-line react/immutability -- render-order counter, deterministic for SSR and client.
                   const open = count++ < 2
                   return (
                     <li key={role.title}>

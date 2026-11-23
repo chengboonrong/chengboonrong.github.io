@@ -70,6 +70,7 @@ function Footer() {
     <footer className="border-t border-line print:hidden">
       <div className="mx-auto flex max-w-[1600px] flex-col gap-2 px-5 py-8 text-sm text-muted md:flex-row md:justify-between md:px-10">
         <p>
+          {/* oxlint-disable-next-line react/purity -- year is intentionally live; hydration mismatch is suppressed. */}
           © <span suppressHydrationWarning>{new Date().getFullYear()}</span> {site.name}
         </p>
         <p>Built with React, GSAP and Three.js</p>
