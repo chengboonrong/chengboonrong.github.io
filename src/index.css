@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
   --color-ground: #07080e;
@@ -8,9 +8,9 @@
   --color-muted: #a0a7bb;
   --color-blue: #4d7cff;
   --color-violet: #8f6bff;
-  --font-display: 'Archivo Variable', 'Arial Narrow', sans-serif;
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'Geist Mono Variable', ui-monospace, monospace;
+  --font-display: "Archivo Variable", "Arial Narrow", sans-serif;
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, monospace;
 }
 
 @layer base {
@@ -104,8 +104,7 @@
 .hero-sky {
   background:
     radial-gradient(64% 46% at 78% 42%, rgb(143 107 255 / 0.42), transparent 72%),
-    radial-gradient(90% 34% at 58% 46%, rgb(77 124 255 / 0.3), transparent 74%),
-    var(--color-ground);
+    radial-gradient(90% 34% at 58% 46%, rgb(77 124 255 / 0.3), transparent 74%), var(--color-ground);
 }
 .hero-scrim {
   background:
@@ -114,7 +113,12 @@
 }
 @media (max-width: 767px) {
   .hero-scrim {
-    background: linear-gradient(0deg, var(--color-ground) 8%, rgb(7 8 14 / 0.72) 38%, transparent 62%);
+    background: linear-gradient(
+      0deg,
+      var(--color-ground) 8%,
+      rgb(7 8 14 / 0.72) 38%,
+      transparent 62%
+    );
   }
 }
 .city-canvas {

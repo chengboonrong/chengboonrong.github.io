@@ -1,13 +1,13 @@
-import { DownloadSimple } from '@phosphor-icons/react/ssr'
-import { education, experience, expertise, site } from './content'
-import { byCompany, ICON, pillPrimary, useMotion } from './ui'
+import { DownloadSimple } from "@phosphor-icons/react/ssr";
+import { education, experience, expertise, site } from "./content";
+import { byCompany, ICON, pillPrimary, useMotion } from "./ui";
 
-const heading = 'display mb-4 text-4xl print:mb-1.5 print:text-[15pt] print:tracking-normal'
-const quiet = 'text-muted print:text-[#333]'
-const bare = (url: string) => url.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')
+const heading = "display mb-4 text-4xl print:mb-1.5 print:text-[15pt] print:tracking-normal";
+const quiet = "text-muted print:text-[#333]";
+const bare = (url: string) => url.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
 
 export function Resume() {
-  useMotion('page')
+  useMotion("page");
   return (
     <div className="mx-auto max-w-[860px] px-5 pb-20 pt-28 md:pt-32 print:max-w-none print:p-0 print:text-[8.9pt] print:leading-[1.27]">
       <header className="mb-12 print:mb-2">
@@ -19,26 +19,37 @@ export function Resume() {
             <DownloadSimple size={18} weight={ICON} aria-hidden /> Download PDF
           </a>
         </div>
-        <p className="mt-4 text-lg print:mt-1 print:text-[10pt]">{site.roles.join(' / ')}</p>
+        <p className="mt-4 text-lg print:mt-1 print:text-[10pt]">{site.roles.join(" / ")}</p>
         <ul className={`mt-3 flex flex-wrap gap-x-6 gap-y-1 ${quiet} print:mt-1 print:gap-x-4`}>
           <li>
-            <a href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center underline-offset-4 hover:underline print:min-h-0">
+            <a
+              href={`mailto:${site.email}`}
+              className="inline-flex min-h-11 items-center underline-offset-4 hover:underline print:min-h-0"
+            >
               {site.email}
             </a>
           </li>
           <li>
-            <a href={site.github} className="inline-flex min-h-11 items-center underline-offset-4 hover:underline print:min-h-0">
+            <a
+              href={site.github}
+              className="inline-flex min-h-11 items-center underline-offset-4 hover:underline print:min-h-0"
+            >
               {bare(site.github)}
             </a>
           </li>
           <li>
-            <a href={site.linkedin} className="inline-flex min-h-11 items-center underline-offset-4 hover:underline print:min-h-0">
+            <a
+              href={site.linkedin}
+              className="inline-flex min-h-11 items-center underline-offset-4 hover:underline print:min-h-0"
+            >
               {bare(site.linkedin)}
             </a>
           </li>
           <li className="inline-flex min-h-11 items-center print:min-h-0">{site.location}</li>
         </ul>
-        <p className="mt-6 max-w-[64ch] leading-relaxed print:mt-1.5 print:max-w-none">{site.intro}</p>
+        <p className="mt-6 max-w-[64ch] leading-relaxed print:mt-1.5 print:max-w-none">
+          {site.intro}
+        </p>
       </header>
 
       <section className="mb-12 print:mb-2">
@@ -80,13 +91,16 @@ export function Resume() {
         <h2 className={heading}>Expertise</h2>
         <dl className="space-y-3 print:space-y-0.5">
           {expertise.map((area) => (
-            <div key={area.title} className="sm:grid sm:grid-cols-[13rem_1fr] sm:gap-4 print:grid print:grid-cols-[10rem_1fr] print:gap-3">
+            <div
+              key={area.title}
+              className="sm:grid sm:grid-cols-[13rem_1fr] sm:gap-4 print:grid print:grid-cols-[10rem_1fr] print:gap-3"
+            >
               <dt className="font-medium">{area.title}</dt>
-              <dd className={`${quiet} print:text-black`}>{area.tools.join(', ')}</dd>
+              <dd className={`${quiet} print:text-black`}>{area.tools.join(", ")}</dd>
             </div>
           ))}
         </dl>
       </section>
     </div>
-  )
+  );
 }

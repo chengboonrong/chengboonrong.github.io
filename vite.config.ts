@@ -1,12 +1,98 @@
-import tailwind from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
-import { defineConfig } from 'vite'
+import tailwind from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react";
+import { defineConfig, lazyPlugins } from "vite-plus";
 
 export default defineConfig(({ isSsrBuild }) => ({
-  appType: 'mpa',
-  plugins: [react(), tailwind()],
+  fmt: {},
+  lint: {
+    plugins: ["oxc", "typescript", "unicorn", "react"],
+    categories: {
+      correctness: "warn",
+    },
+    env: {
+      builtin: true,
+    },
+    ignorePatterns: ["dist", ".omc", "playwright-report", "test-results"],
+    rules: {
+      "no-array-constructor": "error",
+      "no-unused-expressions": "error",
+      "no-unused-vars": "error",
+      "react/rules-of-hooks": "error",
+      "react/static-components": "error",
+      "react/use-memo": "error",
+      "react/preserve-manual-memoization": "error",
+      "react/immutability": "error",
+      "react/globals": "error",
+      "react/refs": "error",
+      "react/set-state-in-effect": "error",
+      "react/error-boundaries": "error",
+      "react/purity": "error",
+      "react/set-state-in-render": "error",
+      "react/unsupported-syntax": "warn",
+      "typescript/ban-ts-comment": "error",
+      "typescript/no-duplicate-enum-values": "error",
+      "typescript/no-empty-object-type": "error",
+      "typescript/no-explicit-any": "error",
+      "typescript/no-extra-non-null-assertion": "error",
+      "typescript/no-misused-new": "error",
+      "typescript/no-namespace": "error",
+      "typescript/no-non-null-asserted-optional-chain": "error",
+      "typescript/no-require-imports": "error",
+      "typescript/no-this-alias": "error",
+      "typescript/no-unnecessary-type-constraint": "error",
+      "typescript/no-unsafe-declaration-merging": "error",
+      "typescript/no-unsafe-function-type": "error",
+      "typescript/no-wrapper-object-types": "error",
+      "typescript/prefer-as-const": "error",
+      "typescript/prefer-namespace-keyword": "error",
+      "typescript/triple-slash-reference": "error",
+      "vite-plus/prefer-vite-plus-imports": "error",
+    },
+    overrides: [
+      {
+        files: ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
+        rules: {
+          "constructor-super": "off",
+          "getter-return": "off",
+          "no-class-assign": "off",
+          "no-const-assign": "off",
+          "no-dupe-class-members": "off",
+          "no-dupe-keys": "off",
+          "no-func-assign": "off",
+          "no-import-assign": "off",
+          "no-new-native-nonconstructor": "off",
+          "no-obj-calls": "off",
+          "no-redeclare": "off",
+          "no-setter-return": "off",
+          "no-this-before-super": "off",
+          "no-undef": "off",
+          "no-unreachable": "off",
+          "no-unsafe-negation": "off",
+          "no-var": "error",
+          "no-with": "off",
+          "prefer-const": "error",
+          "prefer-rest-params": "error",
+          "prefer-spread": "error",
+        },
+      },
+    ],
+    options: {
+      typeAware: true,
+      typeCheck: true,
+    },
+    jsPlugins: [
+      {
+        name: "vite-plus",
+        specifier: "vite-plus/oxlint-plugin",
+      },
+    ],
+  },
+  appType: "mpa",
+  plugins: lazyPlugins(() => [react(), tailwind()]),
   // three is one lazy chunk by design, so the default warning is noise.
   build: { copyPublicDir: !isSsrBuild, chunkSizeWarningLimit: 800 },
-  ssr: { noExternal: ['@phosphor-icons/react'] },
+  ssr: { noExternal: ["@phosphor-icons/react"] },
   preview: { port: 4893, strictPort: true },
-}))
+  // e2e/ is Playwright (npm test); keep Vitest off it.
+  test: { exclude: ["e2e/**", "node_modules/**"], passWithNoTests: true },
+}));
