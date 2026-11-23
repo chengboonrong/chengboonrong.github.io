@@ -304,7 +304,9 @@ function Expertise() {
 }
 
 function Experience() {
-  let count = 0;
+  const groups = byCompany(experience);
+  // first two roles overall start open
+  const starts = groups.map((_, gi) => groups.slice(0, gi).reduce((n, g) => n + g.roles.length, 0));
   return (
     <section
       id="experience"
@@ -325,13 +327,12 @@ function Experience() {
           className="absolute bottom-0 left-0 top-0 w-0.5 origin-top bg-blue md:left-[33.333%]"
         />
         <ol className="space-y-14 md:space-y-20">
-          {byCompany(experience).map((group) => (
+          {groups.map((group, gi) => (
             <li key={group.company} className="grid gap-6 pl-6 md:grid-cols-3 md:gap-0 md:pl-0">
               <h3 className="display pr-8 text-[clamp(2.4rem,4.6vw,5rem)]">{group.company}</h3>
               <ol className="space-y-2 md:col-span-2 md:pl-10">
-                {group.roles.map((role) => {
-                  // oxlint-disable-next-line react/immutability -- render-order counter, deterministic for SSR and client.
-                  const open = count++ < 2;
+                {group.roles.map((role, ri) => {
+                  const open = starts[gi] + ri < 2;
                   return (
                     <li key={role.title}>
                       <details open={open} className="group/role">
